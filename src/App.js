@@ -12,6 +12,7 @@ function App() {
       if (sniz[i] === a) zbir = zbir + a;
     }
     console.log(zbir);
+
     e.target.innerText = zbir;
   }
   function writeTriling(e) {
@@ -171,84 +172,7 @@ function App() {
             niz={niz}
             sniz={sniz}
           ></Kocke>
-
-          {/* <div className={niz ? "bacene_kocke" : "ne_prikazuj"}>
-            <img
-              onClick={() => {
-                !sniz[4] &&
-                  niz[0] !== 7 &&
-                  setsNiz((sniz) => (sniz = [...sniz, niz[0]])) &&
-                  setNiz((niz) => (niz = [7, ...niz.slice(1, 6)]));
-                setNiz((niz) => (niz = niz.slice(0, 6)));
-              }}
-              className="kocke"
-              src={`${Number(niz[0])}.png`}
-              alt="dice1"
-            ></img>
-            <img
-              onClick={() => {
-                !sniz[4] &&
-                  niz[1] !== 7 &&
-                  setsNiz((sniz) => (sniz = [...sniz, niz[1]])) &&
-                  setNiz(
-                    (niz) => (niz = [...niz.slice(0, 1), 7, ...niz.slice(2, 6)])
-                  ) &&
-                  setNiz((niz) => (niz = niz.slice(0, 6)));
-              }}
-              className="kocke"
-              src={`${Number(niz[1])}.png`}
-              alt="dice2"
-            ></img>
-            <img
-              onClick={() => {
-                !sniz[4] &&
-                  niz[2] !== 7 &&
-                  setsNiz((sniz) => (sniz = [...sniz, niz[2]])) &&
-                  setNiz((niz) => (niz = [...niz, (niz[2] = 7)])) &&
-                  setNiz((niz) => (niz = niz.slice(0, 6)));
-              }}
-              className="kocke"
-              src={`${Number(niz[2])}.png`}
-              alt="dice3"
-            ></img>
-            <img
-              onClick={() => {
-                !sniz[4] &&
-                  niz[3] !== 7 &&
-                  setsNiz((sniz) => (sniz = [...sniz, niz[3]])) &&
-                  setNiz((niz) => (niz = [...niz, (niz[3] = 7)])) &&
-                  setNiz((niz) => (niz = niz.slice(0, 6)));
-              }}
-              className="kocke"
-              src={`${Number(niz[3])}.png`}
-              alt="dice4"
-            ></img>
-            <img
-              onClick={() => {
-                !sniz[4] &&
-                  niz[4] !== 7 &&
-                  setsNiz((sniz) => (sniz = [...sniz, niz[4]])) &&
-                  setNiz((niz) => (niz = [...niz, (niz[4] = 7)])) &&
-                  setNiz((niz) => (niz = niz.slice(0, 6)));
-              }}
-              className="kocke"
-              src={`${Number(niz[4])}.png`}
-              alt="dice5"
-            ></img>
-            <img
-              onClick={() => {
-                !sniz[4] &&
-                  niz[5] !== 7 &&
-                  setsNiz((sniz) => (sniz = [...sniz, niz[5]])) &&
-                  setNiz((niz) => (niz = [...niz, (niz[5] = 7)])) &&
-                  setNiz((niz) => (niz = niz.slice(0, 6)));
-              }}
-              className="kocke"
-              src={`${Number(niz[5])}.png`}
-              alt="dice6"
-            ></img>
-          </div> */}
-          <div className="izabrane_kocke">
+          {/* <div className="izabrane_kocke">
             <img
               onClick={(e) => {
                 setsNiz((sniz) => (sniz = sniz.slice(1, 5)));
@@ -297,8 +221,7 @@ function App() {
               src={`${Number(sniz[4])}.png`}
               alt="dice5"
             ></img>
-            <div className={niz[1] ? "bacene_kocke" : "ne_prikazuj"}></div>
-          </div>
+          </div> */}
           <div>
             <table className="tabela">
               <thead>
