@@ -63,6 +63,14 @@ code {
   width: 100%;
   margin: 0 auto;
 }
+.polje_kocki {
+  position: absolute;
+  top: 12%;
+  height: 10%;
+  width: 100%;
+
+  margin: 0 auto;
+}
 .bacene_kocke {
   position: relative;
   top: 10%;
@@ -82,7 +90,7 @@ code {
 .tabela {
   position: absolute;
   left: 30%;
-  top: 57%;
+  top: 45%;
   align-items: center;
   height: 50%;
   width: 35%;

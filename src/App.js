@@ -12,7 +12,6 @@ function App() {
       if (sniz[i] === a) zbir = zbir + a;
     }
     console.log(zbir);
-
     e.target.innerText = zbir;
   }
   function writeTriling(e) {
