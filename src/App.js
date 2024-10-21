@@ -4,15 +4,17 @@ import grb from "./grb.png";
 import Kocke from "./kocke.js";
 function App() {
   const [bacanje, setBacanje] = useState(0);
-  const [niz, setNiz] = useState(["", "", "", "", "", ""]);
-  const [sniz, setsNiz] = useState([]);
+  const [niz, setNiz] = useState([0, 0, 0, 0, 0, 0]);
+  const [sniz, setsNiz] = useState([0, 0, 0, 0, 0]);
   function write1(e, a) {
     let zbir = 0;
     for (let i = 0; i < 6; i++) {
       if (sniz[i] === a) zbir = zbir + a;
     }
-    console.log(zbir);
     e.target.innerText = zbir;
+    setBacanje((b) => (b = 0));
+    setNiz((niz) => (niz = [0, 0, 0, 0, 0, 0]));
+    setsNiz((sniz) => (sniz = [0, 0, 0, 0, 0]));
   }
   function writeTriling(e) {
     let zbir = 0;
@@ -146,10 +148,15 @@ function App() {
     e.target.innerText = zbir;
   }
   function createNums() {
-    if (bacanje < 2) {
+    if (bacanje < 3) {
       setNiz((niz) =>
-        niz.map((clan) => (clan = Math.floor(Math.random() * 6 + 1)))
+        niz.map((clan, i) => {
+          if (clan !== 7) return (clan = Math.floor(Math.random() * 6 + 1));
+          else return clan;
+        })
       );
+      console.log(niz);
+
       setBacanje((bacanje) => (bacanje += 1));
     } else alert("Искористили сте сва бацања");
   }
@@ -171,56 +178,6 @@ function App() {
             niz={niz}
             sniz={sniz}
           ></Kocke>
-          {/* <div className="izabrane_kocke">
-            <img
-              onClick={(e) => {
-                setsNiz((sniz) => (sniz = sniz.slice(1, 5)));
-                let empty = niz.findIndex((el) => el === 7);
-                setNiz((niz) => (niz = [...niz, (niz[empty] = sniz[0])]));
-              }}
-              className="kocke"
-              src={`${Number(sniz[0])}.png`}
-              alt="dice1"
-            ></img>
-            <img
-              onClick={() => {
-                let a = sniz.slice(0, 1);
-                let b = sniz.slice(2, 5);
-                setsNiz((sniz) => (sniz = a.concat(b)));
-              }}
-              className="kocke"
-              src={`${Number(sniz[1])}.png`}
-              alt="dice2"
-            ></img>
-            <img
-              onClick={() => {
-                let a = sniz.slice(0, 2);
-                let b = sniz.slice(3, 5);
-                setsNiz((sniz) => (sniz = a.concat(b)));
-              }}
-              className="kocke"
-              src={`${Number(sniz[2])}.png`}
-              alt="dice3"
-            ></img>
-            <img
-              onClick={() => {
-                let a = sniz.slice(0, 3);
-                let b = sniz.slice(4, 5);
-                setsNiz((sniz) => (sniz = a.concat(b)));
-              }}
-              className="kocke"
-              src={`${Number(sniz[3])}.png`}
-              alt="dice4"
-            ></img>
-            <img
-              onClick={() => {
-                setsNiz((sniz) => (sniz = sniz.slice(0, 4)));
-              }}
-              className="kocke"
-              src={`${Number(sniz[4])}.png`}
-              alt="dice5"
-            ></img>
-          </div> */}
           <div>
             <table className="tabela">
               <thead>
@@ -248,9 +205,7 @@ function App() {
                 })} */}
                 <tr>
                   <td className="rb">1</td>
-                  <td onClick={(e) => write1(e, 1)} className="rb">
-                    ovaj broj
-                  </td>
+                  <td onClick={(e) => write1(e, 1)} className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>

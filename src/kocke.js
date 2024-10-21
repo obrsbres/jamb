@@ -1,38 +1,42 @@
-import { useState } from "react";
 import "./App.css";
 export default function Kocke({ niz, sniz, onSetNiz, onSetSniz }) {
-  const [k0, setK0] = useState(true);
-  const [k1, setK1] = useState(true);
-  const [k2, setK2] = useState(true);
-  const [k3, setK3] = useState(true);
-  const [k4, setK4] = useState(true);
-  const [k5, setK5] = useState(true);
   function clearSelectedDice(e) {
-    console.log(Number(e.target.id));
     const broj = Number(e.target.id);
     const empty = niz.findIndex((e) => e === 7);
-    console.log(empty);
     const vrednost = sniz[broj];
-    console.log(vrednost);
     onSetNiz(
       niz.map((c, i) => {
-        if (c === empty) return (c = vrednost);
+        if (i === empty) return (c = vrednost);
         else return c;
       })
     );
+    onSetSniz(
+      sniz.map((c, i) => {
+        if (i === broj) return (c = 7);
+        else return c;
+      })
+    );
+    console.log(sniz, niz);
   }
   function setKocka(e) {
-    if (e.target.attributes.src.value === "7.png" || sniz[4])
+    console.log(sniz, niz);
+    let isFullSNiz;
+    for (let i = 0; i < sniz.length; i++) {
+      if (sniz[i] === 0 || sniz[i] === 7) isFullSNiz = false;
+      else isFullSNiz = true;
+    }
+    if (e.target.attributes.src.value === "7.png" || isFullSNiz)
       alert("та коцка је изабрана или је изабрано 5 коцки");
     else {
       const brojKocke = Number(e.target.id);
-      if (brojKocke === 0) setK0((k) => !k);
-      if (brojKocke === 1) setK1((k) => !k);
-      if (brojKocke === 2) setK2((k) => !k);
-      if (brojKocke === 3) setK3((k) => !k);
-      if (brojKocke === 4) setK4((k) => !k);
-      if (brojKocke === 5) setK5((k) => !k);
-      onSetSniz((sniz) => (sniz = [...sniz, niz[brojKocke]]));
+      let empty = sniz.findIndex((el) => el === 7 || el === 0);
+      onSetSniz(
+        (sniz) =>
+          (sniz = sniz.map((c, i) => {
+            if (i === empty) return (c = niz[brojKocke]);
+            else return c;
+          }))
+      );
       onSetNiz(
         (niz) =>
           (niz = niz.map((c, i) => {
@@ -41,6 +45,7 @@ export default function Kocke({ niz, sniz, onSetNiz, onSetSniz }) {
           }))
       );
     }
+    console.log(e.target.attributes.src.value);
   }
   return (
     <div className="polje_kocki">
@@ -93,6 +98,34 @@ export default function Kocke({ niz, sniz, onSetNiz, onSetSniz }) {
           id="0"
           onClick={(e) => clearSelectedDice(e)}
           src={`${sniz[0]}.png`}
+          alt="dice1"
+          className="kocke"
+        ></img>
+        <img
+          id="1"
+          onClick={(e) => clearSelectedDice(e)}
+          src={`${sniz[1]}.png`}
+          alt="dice1"
+          className="kocke"
+        ></img>
+        <img
+          id="2"
+          onClick={(e) => clearSelectedDice(e)}
+          src={`${sniz[2]}.png`}
+          alt="dice1"
+          className="kocke"
+        ></img>
+        <img
+          id="3"
+          onClick={(e) => clearSelectedDice(e)}
+          src={`${sniz[3]}.png`}
+          alt="dice1"
+          className="kocke"
+        ></img>
+        <img
+          id="4"
+          onClick={(e) => clearSelectedDice(e)}
+          src={`${sniz[4]}.png`}
           alt="dice1"
           className="kocke"
         ></img>
