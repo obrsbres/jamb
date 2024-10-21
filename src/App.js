@@ -6,6 +6,27 @@ function App() {
   const [bacanje, setBacanje] = useState(0);
   const [niz, setNiz] = useState([0, 0, 0, 0, 0, 0]);
   const [sniz, setsNiz] = useState([0, 0, 0, 0, 0]);
+  const [dole, setDole] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  function writeData(e, a) {
+    const kolona = e.target.id;
+    if (kolona === "dole")
+      setDole((dole) =>
+        dole.map((c, i) => {
+          if (i === a - 1) return (c = Number(e.target.innerText));
+          else return c;
+        })
+      );
+    setDole((dole) =>
+      dole.map((c, i) => {
+        if (i === 6)
+          return dole.slice(0, 6).reduce((a, b) => {
+            return a + b;
+          }, 0);
+        else return c;
+      })
+    );
+    console.log(dole);
+  }
   function write1(e, a) {
     let zbir = 0;
     for (let i = 0; i < 6; i++) {
@@ -15,8 +36,9 @@ function App() {
     setBacanje((b) => (b = 0));
     setNiz((niz) => (niz = [0, 0, 0, 0, 0, 0]));
     setsNiz((sniz) => (sniz = [0, 0, 0, 0, 0]));
+    writeData(e, a);
   }
-  function writeTriling(e) {
+  function writeTriling(e, tr) {
     let zbir = 0;
     if (sniz[0] === sniz[1] && sniz[0] === sniz[2]) zbir = 3 * sniz[0];
     if (sniz[0] === sniz[1] && sniz[0] === sniz[3]) zbir = 3 * sniz[0];
@@ -25,8 +47,9 @@ function App() {
     if (sniz[1] === sniz[2] && sniz[1] === sniz[4]) zbir = 3 * sniz[1];
     if (sniz[2] === sniz[3] && sniz[2] === sniz[4]) zbir = 3 * sniz[2];
     e.target.innerText = zbir;
+    writeData(e, tr);
   }
-  function writeFull(e) {
+  function writeFull(e, fu) {
     let zbir = 0;
     if (
       sniz[0] === sniz[1] &&
@@ -99,8 +122,9 @@ function App() {
     )
       zbir = 3 * sniz[2] + 2 * sniz[0];
     e.target.innerText = zbir;
+    writeData(e, fu);
   }
-  function writeKent(e) {
+  function writeKent(e, ke) {
     let zbir = 0;
     let kontrola = 0;
     if (
@@ -121,8 +145,9 @@ function App() {
       if (kontrola === 15 || kontrola === 20) zbir = kontrola;
     }
     e.target.innerText = zbir;
+    writeData(e, ke);
   }
-  function writePoker(e) {
+  function writePoker(e, po) {
     let zbir = 0;
     if (sniz[0] === sniz[1] && sniz[0] === sniz[2] && sniz[0] === sniz[3])
       zbir = sniz[0] * 4;
@@ -135,8 +160,9 @@ function App() {
     if (sniz[1] === sniz[2] && sniz[1] === sniz[3] && sniz[1] === sniz[4])
       zbir = sniz[1] * 4;
     e.target.innerText = zbir;
+    writeData(e, po);
   }
-  function writeJamb(e) {
+  function writeJamb(e, ja) {
     let zbir = 0;
     if (
       sniz[0] === sniz[1] &&
@@ -146,6 +172,7 @@ function App() {
     )
       zbir = sniz[0] * 5;
     e.target.innerText = zbir;
+    writeData(e, ja);
   }
   function createNums() {
     if (bacanje < 3) {
@@ -194,18 +221,13 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {/* {podaci.map((val) => {
-                    return (
-                        <tr >
-                            <td>{val.rbBacanja}</td>
-                            <td>{val.ime}</td>
-                            <td>{val.zbir}</td>
-                        </tr>
-                    )
-                })} */}
                 <tr>
                   <td className="rb">1</td>
-                  <td onClick={(e) => write1(e, 1)} className="rb"></td>
+                  <td
+                    onClick={(e) => write1(e, 1)}
+                    id="dole"
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -216,7 +238,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">2</td>
-                  <td onClick={(e) => write1(e, 2)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => write1(e, 2)}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -227,7 +253,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">3</td>
-                  <td onClick={(e) => write1(e, 3)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => write1(e, 3)}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -238,7 +268,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">4</td>
-                  <td onClick={(e) => write1(e, 4)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => write1(e, 4)}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -249,7 +283,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">5</td>
-                  <td onClick={(e) => write1(e, 5)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => write1(e, 5)}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -260,7 +298,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">6</td>
-                  <td onClick={(e) => write1(e, 6)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => write1(e, 6)}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -271,7 +313,7 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">Сум</td>
-                  <td className="rb"></td>
+                  <td id="dole" className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -282,7 +324,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">Три</td>
-                  <td onClick={(e) => writeTriling(e)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => writeTriling(e, "tr")}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -293,7 +339,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">Кент</td>
-                  <td onClick={(e) => writeKent(e)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => writeKent(e, "ke")}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -304,7 +354,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">Фул</td>
-                  <td onClick={(e) => writeFull(e)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => writeFull(e, "fu")}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -315,7 +369,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">Покер</td>
-                  <td onClick={(e) => writePoker(e)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => writePoker(e, "po")}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -326,7 +384,11 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">Јамб</td>
-                  <td onClick={(e) => writeJamb(e)} className="rb"></td>
+                  <td
+                    id="dole"
+                    onClick={(e) => writeJamb(e, "ja")}
+                    className="rb"
+                  ></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
@@ -337,7 +399,7 @@ function App() {
                 </tr>
                 <tr>
                   <td className="rb">Сума</td>
-                  <td className="rb"></td>
+                  <td id="dole" className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
                   <td className="rb"></td>
